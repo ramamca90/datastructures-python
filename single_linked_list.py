@@ -111,22 +111,20 @@ class singleLinkedList():
         else:
             print("Please enter valid position , delete failed")
 
-    def __str__(self):
+    def display_list(self):
+        if self.is_empty():
+            return "List empty"
         temp = self.head
-        list_str = []
         while temp:
-            list_str.append(temp.data)
+            print(temp.data, end ="->")
             temp = temp.next
-        if len(list_str) == 0:
-            print("List is empty")
+        print("\n")
 
-        return str(list_str)
-
+'''
 list = singleLinkedList()
 node = Node("A")
 
 list.add_at_end(node)
-'''
 node = Node("B")
 list.add_at_end(node)
 node = Node(100)
@@ -147,9 +145,9 @@ node = Node(999)
 list.insert_between_nodes(node, 100, "A")
 node = Node(23)
 list.insert_at(node, 5) #node ,pos
-'''
 #list.delete_at_end()
-print(list)
+list.display_list()
 #list.delete_head_node()
-list.delete_at(-1)
-print(list)
+list.delete_at(1)
+list.display_list()
+'''
