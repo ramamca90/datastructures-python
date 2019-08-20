@@ -88,24 +88,6 @@ def palindrome_check(dlist):
         start = start.next
         end = end.prev
 
-def palindrome(linkedList):
-    # L, E, V, E, L
-    startPointer = linkedList.head
-    endPointer = linkedList.head
-    while endPointer.next is not None:
-        endPointer = endPointer.next
-    while True:
-        print("xx")
-        if startPointer == endPointer:
-            print("List is palindrome")
-            return
-        if startPointer.data == endPointer.data:
-            startPointer = startPointer.next
-            endPointer = endPointer.prev
-        else:
-            print("List is not palindrome")
-            return
-
 if __name__ == '__main__':
     dlist = DoubleLinkedList()
     # n1 = Node(10)
