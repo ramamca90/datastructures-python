@@ -76,7 +76,6 @@ def palindrome_check(dlist):
         end = end.next
 
     while True:
-        print("xx")
         if ( start == end or start.next == end ) and ( start.data == end.data ):
             print("Its palindrome")
             return
