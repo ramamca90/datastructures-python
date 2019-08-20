@@ -1,4 +1,4 @@
-
+import gc
 
 class Node():
     def __init__(self, data):
@@ -84,18 +84,89 @@ class DoubleLinkedList():
         prevNode.next.prev = node
         prevNode.next = node
 
+    def del_at_head(self):
+        if self.is_list_empty():
+            print("List is empty, nothing to delete")
+            return
 
-##Main logic
-list = DoubleLinkedList()
-n1 = Node(10)
-n2 = Node(20)
-n3 = Node(30)
+        if self.head.next is None:
+            self.head = None
+        else:
+            self.head = self.head.next
+            self.head.prev = None
 
-list.add_at_head(n1)
+    def del_at_end(self):
+        if self.is_list_empty():
+            print("List is empty, nothing to delete")
+            return
 
-list.add_at_head(n2)
-list.add_at_head(n3)
+        if self.head.next is None:
+            self.head = None
+        else:
+            temp = self.head
+            while temp.next:
+                temp = temp.next
 
-list.display_list()
-list.add_at_pos(Node(40), 4)
-list.display_list()
+            temp.prev.next = None
+
+    def del_node(self, dele):
+        # if self.is_list_empty():
+        #     print("List is empty, nothing to delete")
+        #     return
+        #
+        # if self.head == node:
+        #     self.del_at_head()
+        #     return
+        #
+        # temp = self.head
+        # while temp.next:
+        #     if temp.next == node:
+        #         if temp.next.next == None: #last node to be deleted
+        #             temp.next = None
+        #         else:
+        #             temp.next = temp.next.next
+        #             temp.next.prev  = temp
+        #         return
+        #     temp = temp.next
+        #
+        # print("No such node exists, deletion not possible")
+
+        # Base Case
+        if self.head is None or dele is None:
+            return
+
+        # If node to be deleted is head node
+        if self.head == dele:
+            self.head = dele.next
+
+        # Change next only if node to be deleted is NOT
+        # the last node
+        if dele.next is not None:
+            dele.next.prev = dele.prev
+
+        # Change prev only if node to be deleted is NOT
+        # the first node
+        if dele.prev is not None:
+            dele.prev.next = dele.next
+        # Finally, free the memory occupied by dele
+        # Call python garbage collector
+        #gc.collect()
+
+#
+# ##Main logic
+# list = DoubleLinkedList()
+# n1 = Node(10)
+# n2 = Node(20)
+# n3 = Node(30)
+# n4 = Node(40)
+#
+# list.add_at_head(n1)
+#
+# list.add_at_head(n2)
+# list.add_at_head(n3)
+#
+# list.display_list()
+# # list.add_at_pos(Node(40), 4)
+# # list.del_at_head()
+# list.del_node(n1)
+# list.display_list()
