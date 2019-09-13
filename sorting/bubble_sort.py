@@ -1,6 +1,7 @@
 def bubble_sort(arr):
-    
+    swapped = false
     for i in range(len(arr)):
+        
         # Last i elements are already in place 
         for j in range(len(arr)-i-1):
             # traverse the array from 0 to n-i-1 
@@ -8,6 +9,10 @@ def bubble_sort(arr):
             # than the next element
             if arr[j] > arr[j+1]:
                 arr[j], arr[j+1] = arr[j+1], arr[j]
+                swapped = True
+         #if no two elements were swapped by inner loop, then break
+         if not swapped:
+            break
     return arr
 
 bubble_sort([64, 25, 12, 22, 11, -1])
