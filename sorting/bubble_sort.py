@@ -11,3 +11,16 @@ def bubble_sort(arr):
     return arr
 
 bubble_sort([64, 25, 12, 22, 11, -1])
+
+#recursive solution
+# def bubble_sort(arr):
+#     size = len(arr)
+#     if size == 1:
+#         return arr
+#     for i in range(size-1):
+#         if arr[i] > arr[i+1]:
+#             arr[i] , arr[i+1] = arr[i+1], arr[i]
+    
+#     return bubble_sort(arr[:size-1]) + arr[-1:]
+    
+
