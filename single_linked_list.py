@@ -119,6 +119,31 @@ class singleLinkedList():
             print(temp.data, end ="->")
             temp = temp.next
         print("\n")
+        
+    def add_at_pos(self, pos, node):
+        #case1 - is pos valid pos? pos starts from 1, 2, 3, 4, 5, 6 etc.
+        if pos <= 0:
+            print(f"Invalid pos {pos} provided")
+            return
+        
+        #case2 - add at first position
+        if pos == 1:
+            self.add_at_beg(node)
+            return
+        
+        #case3 - add at any position
+        temp = self.head
+        counter = 2
+        
+        while temp:
+            if counter == pos:
+                node.next = temp.next
+                temp.next = node
+                return
+            counter += 1
+            temp = temp.next
+        
+        print(f"Invalid pos {pos} provided")
 
 '''
 list = singleLinkedList()
