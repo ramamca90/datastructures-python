@@ -1,3 +1,4 @@
+#https://www.youtube.com/watch?v=54iv1si4YCM&t=150s&ab_channel=codebasics
 '''
 python hash map implementation using list of linked lists, here collisions allowed
  - internal implementation of dictionary
