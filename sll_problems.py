@@ -3,6 +3,32 @@
 '''
 from single_linked_list import Node, singleLinkedList
 
+# Function to reverse the linked list using swapping
+def reverse(head):
+    curr = head
+    prev = None
+
+    while curr:
+        next = curr.next
+        curr.next = prev
+        prev = curr
+        curr = next
+
+    return prev
+
+# Function to reverse the linked list using recursion
+def reverse_rec(node):
+    if (node == None):
+        return node
+    
+    if (node.next == None):
+        return node
+    
+    node1 = reverse_rec(node.next)
+    node.next.next = node
+    node.next = None
+
+    return node1     
 
 def detect_loop(list):
     if list.is_empty():
@@ -90,3 +116,8 @@ if __name__ == '__main__':
     list.display_list()
     swap_two_nodes(list, list.head, list.head.next)
     list.display_list()
+    list.head = reverse(list.head)
+    list.display_list()
+    list.head = reverse_rec(list.head)
+    list.display_list()
+    
