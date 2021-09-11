@@ -1,12 +1,12 @@
 #https://www.youtube.com/watch?v=4r_XR9fUPhQ&list=PLeo1K3hjS3uu_n_a__MI_KktGTLYopZ12&index=10
 
-class Node:
+class TreeNode:
     def __init__(self, data):
         self.data = data
         self.children = []
         self.parent = None
 
-class Tree:
+class GeneralTree:
     def add_child(self, parent, child):
         child.parent = parent
         parent.children.append(child)
@@ -21,23 +21,23 @@ class Tree:
             self.display(child, space+1)
         
 
-t = Tree()
-r = Node('root')
-c1 = Node('c1')
-c2 = Node('c2')
-c3 = Node('c3')
+t = GeneralTree()
+r = TreeNode('root')
+c1 = TreeNode('c1')
+c2 = TreeNode('c2')
+c3 = TreeNode('c3')
 
 t.add_child(r, c1)
 t.add_child(r, c2)
 t.add_child(r, c3)
 
-t.add_child(c1, Node('c11'))
-t.add_child(c1, Node('c12'))
-t.add_child(c1, Node('c13'))
+t.add_child(c1, TreeNode('c11'))
+t.add_child(c1, TreeNode('c12'))
+t.add_child(c1, TreeNode('c13'))
 
-t.add_child(c2, Node('c21'))
-t.add_child(c2, Node('c22'))
-t.add_child(c2, Node('c23'))
+t.add_child(c2, TreeNode('c21'))
+t.add_child(c2, TreeNode('c22'))
+t.add_child(c2, TreeNode('c23'))
 
 t.display(c2)
 
