@@ -149,8 +149,8 @@ if __name__ == '__main__':
 
     #check_prior_node(dlist)
     dlist.display_list()
-    #reverse_list(dlist)
-    #remove_duplicates(dlist)
+    #reverse_list(dlist)  #here memory locations not going to chang
+    #remove_duplicates(dlist) 
     palindrome_check(dlist)
     dlist.display_list()
     reverse_using_stack(dlist) # here memory locations getting changed
