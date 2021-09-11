@@ -1,5 +1,24 @@
 from double_linked_list import DoubleLinkedList, Node
 
+def reverse_using_stack(dlist):
+    if dlist.is_list_empty():
+        print("List empty")
+        return
+    
+    s = []
+    temp = dlist.head
+    while temp:
+        s.append(temp)
+        temp = temp.next
+    
+#     for item in s:
+#         print(id(item), item.data)
+        
+    temp = self.head
+    while temp:
+        temp.data = s.pop().data
+        temp = temp.next
+        
 def check_prior_node(list):
     '''
     check if the node prior to the middle node is greater
@@ -134,3 +153,6 @@ if __name__ == '__main__':
     #remove_duplicates(dlist)
     palindrome_check(dlist)
     dlist.display_list()
+    reverse_using_stack(dlist) # here memory locations getting changed
+    dlist.display_list()
+    
