@@ -54,21 +54,111 @@ class BinarySearchTree:
         self.in_order(curr.right)
         print(curr.data, end=" ")
         
-    def print_tree(self):
-        if not self.root:
+    def print_tree(self, node):
+        if not node:
             print("Tree empty")
             return
         
-        self.in_order(self.root)
+        self.in_order(node)
         print()
-        self.pre_order(self.root)
+        self.pre_order(node)
         print()
-        self.post_order(self.root)
+        self.post_order(node)
+        print()
         
-t = BinarySearchTree()
-#for item in (15, 12, 27, 7, 14, 20, 88, 23):
-for item in (17, 4, 1, 20, 9, 23, 18, 34):
-    t.add_node(BSTNode(item))
+    def search(self, value, curr_node):
+        
+        if not curr_node:
+            return f"Element {value} NOT found"
+            
+        if value == curr_node.data:
+            return f"Element {value} found"
+        
+        if value < curr_node.data:
+            return self.search(value, curr_node.left)
+        else:
+            return self.search(value, curr_node.right)
+        
+    def find_min(self, curr_node):            
+        if not curr_node:
+                return "Tree is empty"
+            
+        if curr_node and not curr_node.left:
+            return curr_node.data
+        
+        return self.find_min(curr_node.left)
+    
+    
+    def find_max(self, curr_node):
+        if not curr_node:
+                return "Tree is empty"
+            
+        if curr_node and not curr_node.right:
+            return curr_node.data
+        
+        return self.find_max(curr_node.right)
+        
+    def calculate_sum(self, curr_node):
+        
+        if not curr_node:
+            return 0
+            
+        left_sum = self.calculate_sum(curr_node.left)
+        curr_node_value = curr_node.data
+        right_sum = self.calculate_sum(curr_node.right)
+        
+        return left_sum + curr_node_value + right_sum
+        
+    def delete(self, value, node):
+        if not node:
+            print(f"Element {value} not found")
+            return
 
-t.print_tree()
-t.root.left.left.data
+        if value < node.data:
+            node.left  = self.delete(value, node.left)
+
+        elif value > node.data:
+            node.right = self.delete(value, node.right)
+        else:
+            #case1 - both left and right are empty
+            if not node.left and not node.right:
+                return None
+
+            #case2 - only left is empty
+            if not node.left:
+                return node.right
+            #case2 - only right is empty
+            if not node.right:
+                return node.left
+
+            #case3 - left & right are not empty
+            min_val = self.find_min(node.right)
+            node.data = min_val
+            node.right = self.delete(min_val, node.right)
+            
+            #or
+            #max_val = self.find_max(node.left)
+            #node.data = max_val
+            #node.left = self.delete(min_val, node.left) 
+            
+        
+        return node
+        
+
+if __name__ == '__main__':
+    t = BinarySearchTree()
+    for item in (17, 4, 1, 20, 9, 23, 18, 34):
+    #for item in (17,):
+        t.add_node(BSTNode(item))
+
+    t.print_tree(t.root)
+    print(t.search(222, t.root))
+    print(t.search(23, t.root))
+
+    print(t.find_min(t.root))
+    print(t.find_max(t.root))
+    print(t.calculate_sum(t.root))
+    t.root = t.delete(18, t.root)
+    t.print_tree(t.root)
+    t.root = t.delete(23, t.root)
+    t.print_tree(t.root)
