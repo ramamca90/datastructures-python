@@ -11,6 +11,17 @@ class BinarySearchTree:
     def __init__(self):
         self.root = None
         
+    def tree_height(self, node):
+        if not node:
+            return 0
+        
+        lheight = self.tree_height(node.left)
+        rheight = self.tree_height(node.right)
+        if lheight>rheight:
+            return lheight+1
+        else:
+            return rheight + 1
+        
     def traverse_tree(self, parent, child):
         if child.data < parent.data:
             if parent.left:
@@ -58,11 +69,11 @@ class BinarySearchTree:
         if not node:
             print("Tree empty")
             return
-        
+        print("In order", end=" ")
         self.in_order(node)
-        print()
+        print("\nPre order", end=" ")
         self.pre_order(node)
-        print()
+        print("\nPost order", end=" ")
         self.post_order(node)
         print()
         
@@ -78,6 +89,28 @@ class BinarySearchTree:
             return self.search(value, curr_node.left)
         else:
             return self.search(value, curr_node.right)
+        
+    def left_view_tree(self, node, level, max_level):
+        if not node:
+            return None
+        
+        if max_level[0]<level:
+            print(node.data, end=" ")
+            max_level[0] = level
+            
+        self.left_view_tree(node.left, level+1, max_level)
+        self.left_view_tree(node.right, level+1, max_level)
+        
+    def right_view_tree(self, node, level, max_level):
+        if not node:
+            return None
+        
+        if max_level[0]<level:
+            print(node.data, end=" ")
+            max_level[0] = level
+            
+        self.right_view_tree(node.right, level+1, max_level)
+        self.right_view_tree(node.left, level+1, max_level)
         
     def find_min(self, curr_node):            
         if not curr_node:
@@ -152,13 +185,22 @@ if __name__ == '__main__':
         t.add_node(BSTNode(item))
 
     t.print_tree(t.root)
-    print(t.search(222, t.root))
-    print(t.search(23, t.root))
+    #print(t.search(222, t.root))
+    #print(t.search(23, t.root))
 
-    print(t.find_min(t.root))
-    print(t.find_max(t.root))
-    print(t.calculate_sum(t.root))
-    t.root = t.delete(18, t.root)
-    t.print_tree(t.root)
-    t.root = t.delete(23, t.root)
-    t.print_tree(t.root)
+    #print(t.find_min(t.root))
+    #print(t.find_max(t.root))
+    #print(t.calculate_sum(t.root))
+    #t.root = t.delete(18, t.root)
+    #t.print_tree(t.root)
+    print(t.tree_height(t.root))
+    #print left view tree
+    max_level = [0]
+    level = 1
+    t.left_view_tree(t.root, level, max_level)
+    print()
+    #print right view tree
+    #print left view tree
+    max_level = [0]
+    level = 1
+    t.right_view_tree(t.root, level, max_level)
