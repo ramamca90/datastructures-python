@@ -152,6 +152,28 @@ class DoubleLinkedList():
         # Call python garbage collector
         #gc.collect()
 
+    def delete_by_value(self, value):
+        if not self.head:
+            print("DLinked list is empty")
+            return
+        
+        #FIrst element
+        if self.head.value == value:
+            self.head = self.head.next
+            self.head.prev = None
+            return
+        
+        curr = self.head
+        while curr:
+            if curr.next and curr.next.value == value:
+                curr.next = curr.next.next
+                if curr.next:
+                    curr.next.prev = curr
+                return
+            
+            curr = curr.next
+            
+        print(f"{value} not found in the Dlinked list")
 #
 # ##Main logic
 # list = DoubleLinkedList()
