@@ -25,7 +25,19 @@ class DoubleLinkedList():
                 print(temp.data, end = "--")
                 temp = temp.next
             print('\n')
-
+            
+    def __repr__(self):
+        if not self.head:
+            return "DLinked list is empty"
+        
+        result = ""
+        curr = self.head
+        while curr:
+            result += f"{curr.value} <-> "
+            curr = curr.next
+            
+        return result.rstrip(" <->")
+    
     def add_at_head(self, node):
         if self.is_list_empty():
             self.head = node
