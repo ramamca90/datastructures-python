@@ -72,7 +72,39 @@ class CirLinkedList():
         self.head = self.head.next
         curr.next = self.head
 
-
+    def delete_by_value(self, value):
+        if not self.head:
+            print("Linked list is empty")
+            return
+        
+        
+        #list contains only one element
+        if self.head.value == value and self.head.next == self.head:
+            self.head = None
+            return
+        
+        #deleted element -> FIRST element
+        curr = self.head
+        if curr.value == value:
+            while curr.next != self.head:
+                curr = curr.next
+                
+            curr.next = self.head.next
+            self.head = self.head.next
+            return
+                
+        #deleted element -> other than FIRST element        
+        curr = self.head
+        while curr:
+            if curr.next.value == value:                
+                curr.next = curr.next.next
+                return
+            
+            if curr.next == self.head:
+                break
+            curr = curr.next
+            
+        print(f"{value} not found in the linked list")
 
 
     def display_list(self):
