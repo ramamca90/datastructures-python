@@ -1,1 +1,6 @@
 https://leetcode.com/problems/binary-tree-preorder-traversal/submissions/
+https://leetcode.com/problems/binary-tree-inorder-traversal/
+https://leetcode.com/problems/binary-tree-postorder-traversal/
+https://leetcode.com/problems/binary-tree-level-order-traversal/
+https://leetcode.com/problems/binary-tree-postorder-traversal/
+https://leetcode.com/problems/binary-tree-postorder-traversal/discuss/332286/Python-recursive-and-iterative-solutions
