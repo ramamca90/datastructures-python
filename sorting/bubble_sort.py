@@ -31,5 +31,12 @@ bubble_sort([64, 25, 12, 22, 11, -1])
 #             arr[i] , arr[i+1] = arr[i+1], arr[i]
     
 #     return bubble_sort(arr[:size-1]) + arr[-1:]
+https://www.geeksforgeeks.org/problems/bubble-sort/1
+def bubbleSort(self,arr, n):
+        # code here
+        for j in range(len(arr)-1, 0, -1):
+            for i in range(j):
+                if arr[i] > arr[i+1]:
+                    arr[i], arr[i+1] = arr[i+1], arr[i]
     
 
