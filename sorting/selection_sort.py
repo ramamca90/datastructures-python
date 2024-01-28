@@ -11,7 +11,7 @@ is picked and moved to the sorted subarray.
 
 def selection_sort(arr):
     
-    for i in range(len(arr)):        
+    for i in range(len(arr)-1):        
         # Find the minimum element in remaining  
         # unsorted array
         min_index = i
