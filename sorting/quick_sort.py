@@ -45,34 +45,60 @@ def quick_sort(arr):
 #driver code    
 quick_sort([10, 7, 8, -9, 9, 9, 4, 5, 6, -9, 1, 5, -9])
 
-#another way
-def partition(arr, low, high):
-    pivot = arr[high] # pivot 
+#another way using Lomuto & hoares
+#User function Template for python3
+
+class Solution:
+    #Function to sort a list using quick sort algorithm.
+    def quick_sort(self, arr, low, high):        
+        if low >= high:
+            return
+        
+        # pivot_index = self.lomuto_partition(arr, low, high)
+        # self.quick_sort(arr, low, pivot_index-1)
+        # self.quick_sort(arr, pivot_index+1, high)
+        pivot_index = self.hoares_partition(arr, low, high)
+        self.quick_sort(arr, low, pivot_index)
+        self.quick_sort(arr, pivot_index+1, high)
     
-    i = low - 1 # index of smaller element 
-    for j in range(low, high):
-        if arr[j] < pivot:
-             # increment index of smaller element 
-            i += 1 
+    def lomuto_partition(self, arr, low, high):
+        # code here
+        i = low - 1
+        pivot = arr[high]
+        
+        for j in range(low, high):
+            if arr[j] < pivot:
+                i += 1
+                arr[i], arr[j] = arr[j], arr[i]
+                
+        arr[i+1], arr[high] = arr[high], arr[i+1]
+        
+        return i+1
+        
+    def hoares_partition(self, arr, low, high):
+        # hoares partition
+        i = low - 1
+        j = high + 1
+        pivot = arr[low]
+        
+        while True:
+            while True:
+                i += 1
+                if arr[i] >= pivot:
+                    break
+
+            while True:
+                j -= 1
+                if arr[j] <= pivot:
+                    break
+                
+            if i >= j:
+                return j
+            
             arr[i], arr[j] = arr[j], arr[i]
         
-    arr[i+1],arr[high] = arr[high],arr[i+1]
-    
-    pivot_index = i+1      
-    return pivot_index
-    
-def quick_sort(arr, low, high):
-    
-    if low < high:
-    
-        #Get partion index , exact position of pivot
-        pi = partition(arr, low , high)
-    
-        quick_sort(arr, low, pi-1)
-        quick_sort(arr, pi+1, high)
-    
-    return arr
+        return j
 
 #driver code
 arr = [10, 7, 8, -9, 9, 9, 4, 5, 6, -9, 1, 5, -9]   
-quick_sort(arr, 0, len(arr)-1)
+Solution().quick_sort(arr, 0, len(arr)-1)
