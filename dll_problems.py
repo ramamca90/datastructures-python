@@ -51,16 +51,25 @@ def reverse_list(dlist):
         print("List empty")
         return
 
-    currNode = dlist.head
-    temp = None
-    while currNode:
-        temp = currNode.prev
-        currNode.prev  = currNode.next
-        currNode.next = temp
-        currNode = currNode.prev
+    # currNode = dlist.head
+    # temp = None
+    # while currNode:
+    #     temp = currNode.prev
+    #     currNode.prev  = currNode.next
+    #     currNode.next = temp
+    #     currNode = currNode.prev
 
-    if temp:
-        dlist.head = temp.prev
+    # if temp:
+    #     dlist.head = temp.prev
+    #         or 
+
+    curr = dlist.head
+    while head:
+        curr.prev, curr.next = curr.next, curr.prev
+        if not curr.prev:
+            dlist.head = curr
+            return
+        head = head.prev
 
 def remove_duplicates(dlist):
     if dlist.is_list_empty():
